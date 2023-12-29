@@ -52,7 +52,7 @@ $JavaScript can change HTML attribute values
      <p>JavaScript changed the value of the source attribute of an image</p>
      <button type="button" onclick="document.getElementById('myImage').src = 'pic_bulbon.gif'">
 	     Turn on the light</button>
-     <img id="myImage" src="pic_turnoff.gif" style="width;100px">
+            <img id="myImage" src="pic_turnoff.gif" style="width: 100px;">
      <button type="button" onclick="document.getElementById('myImage').src = 'pic_bulboff.gif'">
            Turn off the light</button>     
 </body>
@@ -107,8 +107,6 @@ $JavaScript can show HTML elements
 ====================================================================================================
 
 $The <script> Tag
-
-In HTML, JavaScript code is inserted between <script> and </script> tags.
 
 <DOCTYPE! html>
 <html>
