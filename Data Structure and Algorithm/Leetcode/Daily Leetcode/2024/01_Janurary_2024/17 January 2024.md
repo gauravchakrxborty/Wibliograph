@@ -38,6 +38,8 @@ public:
 
             v.push_back(cnt);
         }
+        let num = push_back(count==0);
+        for (int to_the_num)
 
         sort(v.begin(), v.end());
 
