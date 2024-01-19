@@ -1,47 +1,39 @@
-70. Climbing Stairs | Easy
+931. Minimum Falling Path Sum | Medium
+Given an n x n array of integers matrix, return the minimum sum of any falling path through matrix.
 
-You are climbing a staircase. It takes n steps to reach the top.
+A falling path starts at any element in the first row and chooses the element in the next row that is either directly below or diagonally left/right. Specifically, the next element from position (row, col) will be (row + 1, col - 1), (row + 1, col), or (row + 1, col + 1).
 
-Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?
-
- 
 Example 1:
-Input: n = 2
-Output: 2
-Explanation: There are two ways to climb to the top.
-1. 1 step + 1 step
-2. 2 steps
+Input: matrix = [[2,1,3],[6,5,4],[7,8,9]]
+Output: 13
+Explanation: There are two falling paths with a minimum sum as shown.
 
 Example 2:
-Input: n = 3
-Output: 3
-Explanation: There are three ways to climb to the top.
-1. 1 step + 1 step + 1 step
-2. 1 step + 2 steps
-3. 2 steps + 1 step
+Input: matrix = [[-19,57],[-40,-5]]
+Output: -59
+Explanation: The falling path with a minimum sum is shown.
  
 Constraints:
-1 <= n <= 45
+n == matrix.length == matrix[i].length
+1 <= n <= 100
+-100 <= matrix[i][j] <= 100
 
 
 Solution: C++
 
 class Solution {
-public:
-    int climbStairs(int n) {
-        int ways = 1;
+ public:
+  int minFallingPathSum(vector<vector<int>>& A) {
+    const int n = A.size();
 
-        for (int i = 1; i <= n / 2; i++) {
-            double sum = 1;
+    for (int i = 1; i < n; ++i)
+      for (int j = 0; j < n; ++j) {
+        int mini = INT_MAX;
+        for (int k = max(0, j - 1); k < min(n, j + 2); ++k)
+          mini = min(mini, A[i - 1][k]);
+        A[i][j] += mini;
+      }
 
-            for (int j = i; j < 2 * i; j++) {
-                sum *= (double)(n - j) / (j - i + 1);
-            }
-
-            ways +=sum;
-        }
-
-        return ways;
-    }
+    return ranges::min(A[n - 1]);
+  }
 };
-
